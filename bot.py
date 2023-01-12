@@ -1,11 +1,14 @@
 import discord
 import requests
 import json
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
 intents = discord.Intents.all()
 client = discord.Client(command_prefix='!', intents=intents)
-TOKEN = 'MTA1OTk4ODYzMDQ3MjQ5MTA2OA.GoDwSc.k9BGDwnY0i3BjUFV3NhtTOkouA4WlAEwECGzek'
+TOKEN = os.getenv("TOKEN1")
 
 
 @client.event
@@ -15,12 +18,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    '''if message.author == client.user:
-        return
-    
-    if message.content.startswith(x):
-        x = input('Enter Symbol')'''
-        
+
     base = 'https://rest.coinapi.io/v1/exchangerate'
     endpoint = '/' + message.content + '/' + 'USD'
     url = base + endpoint
@@ -30,4 +28,3 @@ async def on_message(message):
     await message.channel.send("$" + str(rate))
 
 client.run(TOKEN)
-
