@@ -22,7 +22,7 @@ async def on_message(message):
     base = 'https://rest.coinapi.io/v1/exchangerate'
     endpoint = '/' + message.content + '/' + 'USD'
     url = base + endpoint
-    headers = {'X-CoinAPI-Key' : '72A67B2F-90EE-4717-A8A9-E15AA0EDEE52'}
+    headers = {'X-CoinAPI-Key' : 'TOKEN2'}
     response = requests.get(url, headers=headers)
     rate = json.loads(response.text)['rate']
     await message.channel.send("$" + str(rate))
